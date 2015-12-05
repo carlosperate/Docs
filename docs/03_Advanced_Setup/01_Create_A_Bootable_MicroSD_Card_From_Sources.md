@@ -1,13 +1,13 @@
 ## Overview
 
-Note: The following instructions are referred to a Linux system.
+Note: The following instructions refer to a Linux system.
 
 A bootable SD card has 3 different elements:
 * Kernel
 * U-Boot (Universal Bootloader)
 * File System (e.g: UDOObuntu)
 
-A possible way to create a bootable SD card consists in installing the elements separately from the binaries available on UDOO’ s website. Alternatively, it is possible to compile the source code in order to get the binaries.
+A possible way to create a bootable SD card consists in installing the elements separately from the binaries available on UDOO's website. Alternatively, it is possible to compile the source code in order to get the binaries.
 
 This is especially useful for people that want to customize and improve the UDOO environment and getting the newest kernel/u-boot updates. This way is not usually suitable for beginners.
 
@@ -23,11 +23,9 @@ Create a development folder on Home:
 
 cd mkdir udoo-dev
 
-
 ```
 
-then move to the folder
-
+then move to the folder:
 
 ```bash
 
@@ -35,11 +33,11 @@ cd udoo-dev
 
 ```
 
-Download inside the “udoo-dev” folder the file system, the compiled Kernel (uImage) and the U-Boot file (u-boot.bin) for UDOO Dual or Quad from the binaries section of the website [http://www.udoo.org/downloads/](/downloads/). Once completed these steps, in “udoo-dev” folder there will be 3 binary files: File System, U-Boot and Kernel.
+Download inside the "udoo-dev" folder the file system, the compiled Kernel (uImage) and the U-Boot file (u-boot.bin) for UDOO Dual or Quad from the binaries section of the website [http://www.udoo.org/downloads/](/downloads/). Once these steps are completed, in "udoo-dev" folder there will be 3 binary files: File System, U-Boot and Kernel.
 
 ## Compile the Kernel and the modules
 
-It’s possible to download the Kernel sources from the GitHub repository [https://github.com/UDOOboard/Kernel_Unico](https://github.com/UDOOboard/Kernel_Unico).
+It's possible to download the Kernel sources from the GitHub repository [https://github.com/UDOOboard/Kernel_Unico](https://github.com/UDOOboard/Kernel_Unico).
 
 Note: For compiling the sources from an x86/64 PC, it is also necessary to download the cross-compiler from the sources section of the webpage [http://www.udoo.org/downloads/](/downloads/).
 
@@ -57,7 +55,7 @@ tar -xzv
 
 It could be prompted to install some packages in order to successfully compile the kernel on Linux.
 
-E.g. in Ubuntu 10.04 it is necessary  to install the following packages:
+E.g. in Ubuntu 10.04 it is necessary to install the following packages:
 
 ```bash
 
@@ -109,7 +107,7 @@ uImage modules
 
 ```
 
-(This operation could take up to 20 minutes, depending on the PC used) The compiled Binary (uImage) will now be available in the arch/arm/boot/ folder.
+(This operation could take up to 20 minutes, depending on the PC used) The compiled binary (uImage) will now be available in the arch/arm/boot/ folder.
 
 Copy it in the previous folder:
 
@@ -145,7 +143,7 @@ sudo gparted
 
 Select the right microSD label from the drop down menu
 
-NOTE: Be sure you’ re using the correct label; use of the wrong device identifier could result in the loss of all data on the Hard Drive of the host PC used. e.g.  /dev/sdc
+NOTE: Ensure you're using the correct label; use of the wrong device identifier could result in the loss of all data on the Hard Drive of the host PC used. e.g.  /dev/sdc
 
 Unmount and delete the existing microSD partitions (If necessary, create a partition table: Select from the top menu: Device → Create Partition Table... → Apply)
 
@@ -163,7 +161,7 @@ File system: ext3
 
 (NOTE: ext4 is not yet supported)
 
-Label: <UDOO_MICROSD_LABEL>
+Label: `<UDOO_MICROSD_LABEL>`
 
 Press the green V form, wait for the partition to be done and exit gparted.
 
@@ -211,7 +209,7 @@ sudo cp -av lib /media/<UDOO_MICROSD_LABEL>/
 
 ### Installing U-Boot
 
-Unmount all the Micro SD partitions:
+Unmount all the microSD partitions:
 
 ```bash
 
@@ -219,7 +217,7 @@ sudo umount /dev/<MICROSD_DEVICE_NAME>*
 
 ```
 
-NOTE: Be sure you’ re using the correct device filename; use of the wrong device identifier could result in the loss of all data on the Hard Drive of the host PC used.
+NOTE: Ensure you're using the correct device filename; use of the wrong device identifier could result in the loss of all data on the Hard Drive of the host PC used.
 
 Double check the filename of your device with command:
 
@@ -248,15 +246,4 @@ sync
 
 ```
 
-The microSD card is now ready. Simply insert it in UDOO’s microSD Card slot and boot the system.
-
-
-
-
-
-
-
-
-
-
-
+The microSD card is now ready. Simply insert it in UDOO's microSD card slot and boot the system.

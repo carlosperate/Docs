@@ -1,15 +1,15 @@
 ## Overview
 
-The following paragraphs will guide to in the creation of a bootable micro SD card for UDOO board, starting from precompiled binaries. This method offers more flexibility and customization opportunities for the average users.
+The following paragraphs will guide you in the creation of a bootable MicroSD card for the UDOO board, starting from precompiled binaries. This method offers more flexibility and customization opportunities for the average users.
 
-If you don’t feel confident about using binaries you should use the image file method to create your Micro SD card.
+If you don’t feel confident about using binaries you should use the image file method to create your MicroSD card.
 
 Note: The following step by step guide is referred to a Linux System.
 
 
 ## Step by Step Guide
 
-###Download the binaries
+### Download the binaries
 
 A bootable SD card has 4 different elements:
 
@@ -20,10 +20,9 @@ A bootable SD card has 4 different elements:
 
 Create a new folder "udoo-dev" under your Home directory, then browse the UDOO's web site to the Download page and download the binaries you need.
 
-###GParted the Micro SD card
+### GParted the MicroSD card
 
-Insert the Micro SD card in the card reader and launch GParted from command line:
-
+Insert the MicroSD card in the card reader and launch GParted from the command line:
 
 ```bash
 
@@ -31,9 +30,9 @@ sudo gparted
 
 ```
 
-Select the Micro SD from the drop down menu, e.g. /dev/sdc. 
+Select the MicroSD from the drop down menu, e.g. /dev/sdc.
 
-NOTE: Be sure you’ re using the correct label; using of the wrong device identifier could result in the loss of all data on the Hard Drive of the host PC used.
+NOTE: Ensure you're using the correct label; using of the wrong device identifier could result in the loss of all data on the Hard Drive of the host PC used.
 
 Create a partition table from the top menu: Device → Create Partition Table... → Apply.
 
@@ -44,12 +43,12 @@ Create a new partition with the following parameters:
 * Free space following (MiB): 10
 * Create as: Primary partition
 * File system: ext3 (ext4 is not supported yet)
-* Label: <UDOO_MICROSD_LABEL>
+* Label: `<UDOO_MICROSD_LABEL>`
 
 Click on Apply and wait for the partition to be done, then exit GParted.
 
 
-###Copy the files to the Micro SD card
+### Copy the files to the MicroSD card
 
 **File System**
 
@@ -67,11 +66,11 @@ Note: Always remember to replace the strings inside the brackets with the right 
 
 **Kernel Image**
 
-Copy the binary inside the Micro SD card /boot folder by using the following command:
+Copy the binary inside the microSD card /boot folder by using the following command:
 
 ```bash
 
-sudo cp uImage /media/<UDOO_MICROSD_LABEL>/boot 
+sudo cp uImage /media/<UDOO_MICROSD_LABEL>/boot
 
 ```
 
@@ -81,7 +80,7 @@ Remove the existing modules from the file system:
 
 ```bash
 
-sudo rm -rv /media/<UDOO_MICROSD_LABEL>/lib/modules/* 
+sudo rm -rv /media/<UDOO_MICROSD_LABEL>/lib/modules/*
 
 ```
 
@@ -89,7 +88,7 @@ Copy the new modules:
 
 ```bash
 
-sudo cp -av lib /media/<UDOO_MICROSD_LABEL>/ 
+sudo cp -av lib /media/<UDOO_MICROSD_LABEL>/
 
 ```
 
@@ -103,16 +102,16 @@ sudo umount /dev/<MICROSD_DEVICE_NAME>*
 
 ```
 
-e.g. <MICROSD_DEVICE_NAME>* is /dev/sdc* 
+e.g. `<MICROSD_DEVICE_NAME>*` is `/dev/sdc*`
 
-Copy the u-boot binary file inside the Micro SD. 
+Copy the u-boot binary file inside the microSD.
 
 For UDOO Quad:
 
 ```bash
 
 sudo dd if=u-boot-q.imx of=/dev/<MICROSD_DEVICE_NAME> bs=512 seek=2
-   
+
 ```
 
 For UDOO Dual:
@@ -120,23 +119,19 @@ For UDOO Dual:
 ```bash
 
 sudo dd if=u-boot-d.imx of=/dev/<MICROSD_DEVICE_NAME> bs=512 seek=2
-   
+
 ```
-   
-e.g. <MICROSD_DEVICE_NAME> is /dev/sdc 
 
-NOTE: Be sure you’ re using the correct device filename; use of the wrong device identifier could result in the loss of all data on the Hard Drive of the host PC used.
+e.g. `<MICROSD_DEVICE_NAME>` is `/dev/sdc`
 
-Before remove the Micro SD card run the command to write any data buffered in memory out to disk:
+NOTE: Ensure you're using the correct device filename; use of the wrong device identifier could result in the loss of all data on the Hard Drive of the host PC used.
+
+Before removing the microSD card run the command to write any data buffered in memory out to disk:
 
 ```bash
 
-sync 
-   
+sync
+
 ```
-   
+
 The microSD card is now ready.
-
-
-
-
